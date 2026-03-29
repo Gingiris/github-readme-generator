@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gingiris.github.io/github-readme-generator/sitemap.xml
