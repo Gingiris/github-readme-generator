@@ -3,290 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub README Generator - One-Click README | Gingiris</title>
-    <meta name="description" content="Free GitHub README generator. Paste your repo URL, get a professional README instantly. No sign-up required.">
-    <meta name="keywords" content="github readme template, readme generator, github readme, readme.md generator, open source readme">
-    
-    <meta property="og:title" content="GitHub README Generator - One Click">
-    <meta property="og:description" content="Paste repo URL → Get professional README. That's it.">
-    <meta property="og:url" content="https://gingiris.github.io/github-readme-generator/">
-    
+    <title>GitHub README Generator - Pro README in 1 Click | Gingiris</title>
+    <meta name="description" content="Generate professional README like React, OpenAI SDK, shadcn/ui. Paste URL, get pro README instantly.">
+    <meta name="keywords" content="github readme template, readme generator, github readme, professional readme">
     <link rel="canonical" href="https://gingiris.github.io/github-readme-generator/">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
-    
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebApplication","name":"GitHub README Generator","url":"https://gingiris.github.io/github-readme-generator/","applicationCategory":"DeveloperApplication","offers":{"@type":"Offer","price":"0"}}
-    </script>
-    
     <style>
-        :root { --primary: #2563eb; --bg: #f8fafc; --card: #fff; --text: #1e293b; --muted: #64748b; --border: #e2e8f0; --success: #22c55e; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-        header { text-align: center; margin-bottom: 2rem; }
-        h1 { font-size: 2.25rem; margin-bottom: 0.5rem; }
-        .subtitle { color: var(--muted); }
-        
-        .card { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        
-        .input-row { display: flex; gap: 0.5rem; }
-        .input-row input { flex: 1; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; }
-        .input-row input:focus { outline: none; border-color: var(--primary); }
-        
-        .btn { padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .btn-primary { background: var(--primary); color: #fff; }
-        .btn-primary:hover { background: #1d4ed8; }
-        .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-        
-        .loading { display: none; }
-        .btn.is-loading .label { display: none; }
-        .btn.is-loading .loading { display: inline; }
-        
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1rem 0; }
-        .stat { text-align: center; padding: 0.75rem; background: var(--bg); border-radius: 8px; }
-        .stat-value { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
-        .stat-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
-        
-        .options { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
-        .option { padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; font-size: 0.875rem; transition: all 0.2s; }
-        .option:hover { border-color: var(--primary); }
-        .option.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-        
-        .output { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.875rem; max-height: 400px; overflow: auto; white-space: pre-wrap; }
-        
-        .preview { background: var(--bg); padding: 1rem; border-radius: 8px; max-height: 400px; overflow: auto; }
-        .preview h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .preview h2 { font-size: 1.25rem; margin: 1rem 0 0.5rem; }
-        .preview ul { margin-left: 1.5rem; }
-        .preview code { background: #e2e8f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
-        .preview pre { background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; overflow-x: auto; }
-        .preview pre code { background: none; padding: 0; }
-        
-        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-        .tab { padding: 0.5rem 1rem; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; color: var(--muted); }
-        .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-        
-        .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-        
-        .cta { background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; padding: 1.5rem; border-radius: 12px; text-align: center; margin: 2rem 0; }
-        .cta p { margin-bottom: 1rem; font-weight: 500; }
-        .cta .btn { margin: 0.25rem; }
-        .cta .btn-primary { background: #fff; color: #2563eb; }
-        .cta .btn-outline { border-color: #fff; color: #fff; }
-        
-        footer { text-align: center; color: var(--muted); font-size: 0.875rem; margin-top: 2rem; }
-        footer a { color: var(--primary); text-decoration: none; }
-        
-        .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--success); color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; display: none; }
-        .toast.show { display: block; }
-        
-        .hidden { display: none !important; }
-        
-        @media (max-width: 600px) {
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .input-row { flex-direction: column; }
-        }
+        :root{--p:#2563eb;--bg:#f8fafc;--c:#fff;--t:#1e293b;--m:#64748b;--b:#e2e8f0;--ok:#22c55e}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+        .w{max-width:860px;margin:0 auto;padding:2rem 1rem}
+        header{text-align:center;margin-bottom:2rem}
+        h1{font-size:2rem;margin-bottom:.5rem}
+        .sub{color:var(--m)}
+        .card{background:var(--c);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+        .row{display:flex;gap:.5rem}
+        .row input{flex:1;padding:1rem;border:2px solid var(--b);border-radius:8px;font-size:1rem}
+        .row input:focus{outline:none;border-color:var(--p)}
+        .btn{padding:.875rem 1.5rem;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+        .bp{background:var(--p);color:#fff}.bp:hover{background:#1d4ed8}
+        .bs{background:var(--bg);color:var(--t);border:1px solid var(--b)}
+        .bo{background:transparent;border:2px solid var(--p);color:var(--p)}
+        .ld{display:none}.btn.go .lb{display:none}.btn.go .ld{display:inline}
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0}
+        .st{text-align:center;padding:.75rem;background:var(--bg);border-radius:8px}
+        .sv{font-size:1.25rem;font-weight:700;color:var(--p)}
+        .sl{font-size:.7rem;color:var(--m);text-transform:uppercase}
+        .opts{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+        .opt{padding:.5rem 1rem;border:1px solid var(--b);border-radius:20px;cursor:pointer;font-size:.875rem;transition:.2s}
+        .opt:hover{border-color:var(--p)}.opt.on{background:var(--p);color:#fff;border-color:var(--p)}
+        .tpl{display:flex;gap:.5rem;margin:1rem 0}
+        .tpl .opt{flex:1;text-align:center;padding:.75rem}
+        .tabs{display:flex;gap:.5rem;margin-bottom:1rem}
+        .tab{padding:.5rem 1rem;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;color:var(--m)}
+        .tab.on{color:var(--p);border-bottom-color:var(--p)}
+        .out{background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;font-family:monospace;font-size:.875rem;max-height:500px;overflow:auto;white-space:pre-wrap}
+        .pre{background:var(--bg);padding:1rem;border-radius:8px;max-height:500px;overflow:auto}
+        .pre h1{font-size:1.5rem;margin-bottom:.5rem}.pre h2{font-size:1.25rem;margin:1rem 0 .5rem}
+        .pre ul{margin-left:1.5rem}.pre code{background:#e2e8f0;padding:.1rem .3rem;border-radius:3px;font-size:.9em}
+        .pre pre{background:#1e293b;color:#e2e8f0;padding:.75rem;border-radius:6px;overflow-x:auto;margin:.5rem 0}
+        .pre pre code{background:none;padding:0}.pre img{max-width:100%}
+        .acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+        .cta{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:1.5rem;border-radius:12px;text-align:center;margin:2rem 0}
+        .cta p{margin-bottom:1rem;font-weight:500}.cta .btn{margin:.25rem}.cta .bp{background:#fff;color:#2563eb}.cta .bo{border-color:#fff;color:#fff}
+        footer{text-align:center;color:var(--m);font-size:.875rem;margin-top:2rem}footer a{color:var(--p);text-decoration:none}
+        .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-weight:500;display:none}.toast.show{display:block}
+        .hid{display:none!important}
+        @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.row{flex-direction:column}.tpl{flex-wrap:wrap}}
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📄 README Generator</h1>
-            <p class="subtitle">Paste repo URL → Get professional README</p>
-        </header>
+<div class="w">
+    <header>
+        <h1>📄 README Generator</h1>
+        <p class="sub">Pro README like React, shadcn — one click</p>
+    </header>
 
-        <div class="card">
-            <div class="input-row">
-                <input type="text" id="url" placeholder="https://github.com/username/repo" autofocus>
-                <button class="btn btn-primary" id="goBtn" onclick="generate()">
-                    <span class="label">Generate ✨</span>
-                    <span class="loading">...</span>
-                </button>
-            </div>
+    <div class="card">
+        <div class="row">
+            <input type="text" id="url" placeholder="https://github.com/username/repo" autofocus>
+            <button class="btn bp" id="go" onclick="go()"><span class="lb">Generate ✨</span><span class="ld">...</span></button>
         </div>
-
-        <div class="card hidden" id="result">
-            <div class="stats" id="stats"></div>
-            
-            <div class="options" id="options">
-                <span class="option active" data-opt="badges">🏷️ Badges</span>
-                <span class="option active" data-opt="demo">🎬 Demo</span>
-                <span class="option" data-opt="toc">📑 TOC</span>
-                <span class="option active" data-opt="contrib">🤝 Contributing</span>
-                <span class="option active" data-opt="license">📜 License</span>
-            </div>
-
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('preview')">Preview</button>
-                <button class="tab" onclick="showTab('code')">Markdown</button>
-            </div>
-            
-            <div id="previewPane" class="preview"></div>
-            <div id="codePane" class="output hidden"></div>
-            
-            <div class="actions">
-                <button class="btn btn-primary" onclick="copy()">📋 Copy</button>
-                <button class="btn btn-secondary" onclick="download()">⬇️ Download</button>
-                <button class="btn btn-outline" onclick="reset()">🔄 New</button>
-            </div>
-        </div>
-
-        <div class="cta">
-            <p>🚀 Want the complete open source marketing playbook?</p>
-            <a href="https://gingiris.gumroad.com/l/vhmkew" target="_blank" class="btn btn-primary">Get Guide $</a>
-            <a href="https://github.com/Gingiris/gingiris-opensource" target="_blank" class="btn btn-outline">⭐ Star</a>
-        </div>
-
-        <footer>
-            <a href="https://github.com/Gingiris">Gingiris</a> · 
-            <a href="https://gingiris.github.io/ph-comment-generator/">PH Comments</a> · 
-            <a href="https://gingiris.github.io/github-issue-generator/">Issue Generator</a>
-        </footer>
     </div>
 
-    <div class="toast" id="toast">✓ Copied!</div>
+    <div class="card hid" id="res">
+        <div class="stats" id="stats"></div>
+        
+        <p style="font-weight:600;margin-bottom:.5rem">Template Style</p>
+        <div class="tpl" id="tpl">
+            <span class="opt on" data-t="modern">🚀 Modern</span>
+            <span class="opt" data-t="minimal">✨ Minimal</span>
+            <span class="opt" data-t="detailed">📚 Detailed</span>
+        </div>
+        
+        <p style="font-weight:600;margin-bottom:.5rem">Include</p>
+        <div class="opts" id="opts">
+            <span class="opt on" data-o="logo">🖼️ Logo</span>
+            <span class="opt on" data-o="badges">🏷️ Badges</span>
+            <span class="opt on" data-o="demo">🎬 Demo</span>
+            <span class="opt on" data-o="features">✨ Features</span>
+            <span class="opt on" data-o="install">📦 Install</span>
+            <span class="opt on" data-o="usage">🚀 Usage</span>
+            <span class="opt" data-o="api">📖 API</span>
+            <span class="opt on" data-o="contrib">🤝 Contributing</span>
+            <span class="opt on" data-o="license">📜 License</span>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-    let repo = null, md = '';
+        <div class="tabs">
+            <button class="tab on" onclick="tab('pre')">Preview</button>
+            <button class="tab" onclick="tab('out')">Markdown</button>
+        </div>
+        <div id="preP" class="pre"></div>
+        <div id="outP" class="out hid"></div>
 
-    document.getElementById('url').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
-    document.querySelectorAll('.option').forEach(o => o.addEventListener('click', () => { o.classList.toggle('active'); if (repo) render(); }));
+        <div class="acts">
+            <button class="btn bp" onclick="cp()">📋 Copy</button>
+            <button class="btn bs" onclick="dl()">⬇️ Download</button>
+            <button class="btn bo" onclick="rs()">🔄 New</button>
+        </div>
+    </div>
 
-    async function generate() {
-        const url = document.getElementById('url').value.trim();
-        const m = url.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
-        if (!m) return alert('Invalid GitHub URL');
+    <div class="cta">
+        <p>🚀 Complete open source marketing playbook</p>
+        <a href="https://gingiris.gumroad.com/l/vhmkew" target="_blank" class="btn bp">Get Guide $</a>
+        <a href="https://github.com/Gingiris/gingiris-opensource" target="_blank" class="btn bo">⭐ Star</a>
+    </div>
 
-        const btn = document.getElementById('goBtn');
-        btn.classList.add('is-loading');
-        btn.disabled = true;
+    <footer>
+        <a href="https://github.com/Gingiris">Gingiris</a> · 
+        <a href="https://gingiris.github.io/ph-comment-generator/">PH Comments</a> · 
+        <a href="https://gingiris.github.io/github-issue-generator/">Issue Generator</a>
+    </footer>
+</div>
+<div class="toast" id="toast">✓ Copied!</div>
 
-        try {
-            const [, owner, name] = m;
-            const r = await fetch(`https://api.github.com/repos/${owner}/${name}`);
-            if (!r.ok) throw new Error(r.status === 404 ? 'Repo not found' : 'API error');
-            repo = await r.json();
-            repo._owner = owner;
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+let R=null,M='';
+const $=id=>document.getElementById(id);
 
-            // Try topics
-            try {
-                const t = await fetch(`https://api.github.com/repos/${owner}/${name}/topics`, { headers: { 'Accept': 'application/vnd.github.mercy-preview+json' }});
-                if (t.ok) repo.topics = (await t.json()).names || [];
-            } catch(e) {}
+$('url').addEventListener('keypress',e=>{if(e.key==='Enter')go()});
+document.querySelectorAll('.tpl .opt').forEach(o=>o.addEventListener('click',()=>{document.querySelectorAll('.tpl .opt').forEach(x=>x.classList.remove('on'));o.classList.add('on');if(R)render()}));
+document.querySelectorAll('.opts .opt').forEach(o=>o.addEventListener('click',()=>{o.classList.toggle('on');if(R)render()}));
 
-            showStats();
-            render();
-            document.getElementById('result').classList.remove('hidden');
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-        } catch (e) {
-            alert(e.message);
-        } finally {
-            btn.classList.remove('is-loading');
-            btn.disabled = false;
+async function go(){
+    const url=$('url').value.trim();
+    const m=url.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
+    if(!m)return alert('Invalid GitHub URL');
+    
+    const btn=$('go');btn.classList.add('go');btn.disabled=true;
+    
+    try{
+        const[,owner,name]=m;
+        const r=await fetch(`https://api.github.com/repos/${owner}/${name}`);
+        if(!r.ok)throw new Error(r.status===404?'Repo not found':'API error');
+        R=await r.json();R._o=owner;
+        
+        try{const t=await fetch(`https://api.github.com/repos/${owner}/${name}/topics`,{headers:{'Accept':'application/vnd.github.mercy-preview+json'}});if(t.ok)R.topics=(await t.json()).names||[]}catch(e){}
+        
+        stats();render();
+        $('res').classList.remove('hid');
+        $('res').scrollIntoView({behavior:'smooth'});
+    }catch(e){alert(e.message)}
+    finally{btn.classList.remove('go');btn.disabled=false}
+}
+
+function stats(){
+    const s=R.stargazers_count>=1000?(R.stargazers_count/1000).toFixed(1)+'k':R.stargazers_count;
+    const a=Math.floor((Date.now()-new Date(R.created_at))/(1000*60*60*24*30));
+    $('stats').innerHTML=`
+        <div class="st"><span class="sv">${R.name}</span><span class="sl">Project</span></div>
+        <div class="st"><span class="sv">${s}</span><span class="sl">Stars</span></div>
+        <div class="st"><span class="sv">${R.language||'N/A'}</span><span class="sl">Language</span></div>
+        <div class="st"><span class="sv">${a<12?a+'mo':Math.floor(a/12)+'y'}</span><span class="sl">Age</span></div>`;
+}
+
+function has(o){return document.querySelector(`.opts .opt[data-o="${o}"]`).classList.contains('on')}
+function tpl(){return document.querySelector('.tpl .opt.on').dataset.t}
+
+function render(){
+    const{name,description,language,license,topics,_o}=R;
+    const lic=license?.spdx_id||'MIT';
+    const lang=(language||'').toLowerCase();
+    const t=tpl();
+    
+    let s='';
+    
+    // Logo + centered title (Modern style)
+    if(t==='modern'&&has('logo')){
+        s+=`<div align="center">\n`;
+        s+=`  <img src="https://via.placeholder.com/120?text=${name[0].toUpperCase()}" alt="Logo" width="120">\n`;
+        s+=`  <h1>${name}</h1>\n`;
+        if(has('badges')){
+            s+=`  <p>\n`;
+            s+=`    <a href="https://github.com/${_o}/${name}/stargazers"><img src="https://img.shields.io/github/stars/${_o}/${name}?style=flat-square" alt="Stars"></a>\n`;
+            s+=`    <a href="LICENSE"><img src="https://img.shields.io/badge/license-${lic}-blue?style=flat-square" alt="License"></a>\n`;
+            if(lang==='javascript'||lang==='typescript')s+=`    <a href="https://npmjs.com/package/${name}"><img src="https://img.shields.io/npm/v/${name}?style=flat-square" alt="npm"></a>\n`;
+            if(lang==='python')s+=`    <a href="https://pypi.org/project/${name}/"><img src="https://img.shields.io/pypi/v/${name}?style=flat-square" alt="PyPI"></a>\n`;
+            s+=`  </p>\n`;
+        }
+        s+=`  <p>${description||'A great project.'}</p>\n`;
+        s+=`</div>\n\n`;
+    }else{
+        // Minimal/Detailed: inline title + badges
+        s+=`# ${name}`;
+        if(has('badges')&&t==='minimal'){
+            s+=` [![Stars](https://img.shields.io/github/stars/${_o}/${name}?style=flat-square)](https://github.com/${_o}/${name})`;
+        }
+        s+=`\n\n`;
+        if(has('badges')&&t!=='minimal'){
+            s+=`[![Stars](https://img.shields.io/github/stars/${_o}/${name}?style=flat-square)](https://github.com/${_o}/${name}/stargazers) `;
+            s+=`[![License](https://img.shields.io/badge/license-${lic}-blue?style=flat-square)](LICENSE)\n\n`;
+        }
+        s+=`${description||'A great project.'}\n\n`;
+    }
+    
+    // Demo
+    if(has('demo')){
+        s+=`## 🎬 Demo\n\n`;
+        s+=`![Demo](https://via.placeholder.com/800x400?text=${encodeURIComponent(name+' Demo')})\n\n`;
+    }
+    
+    // Features
+    if(has('features')){
+        if(t==='detailed'){
+            s+=`## ✨ Features\n\n`;
+            const feats=topics&&topics.length?topics.slice(0,4):['Fast','Simple','Extensible','Well-documented'];
+            feats.forEach(f=>{
+                const title=f.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+                s+=`* **${title}** — Description of this feature.\n`;
+            });
+            s+='\n';
+        }else{
+            s+=`## ✨ Features\n\n`;
+            const feats=topics&&topics.length?topics.slice(0,5):['Fast and lightweight','Easy to use','Well documented'];
+            feats.forEach(f=>s+=`- ${f.replace(/-/g,' ')}\n`);
+            s+='\n';
         }
     }
-
-    function showStats() {
-        const stars = repo.stargazers_count >= 1000 ? (repo.stargazers_count/1000).toFixed(1)+'k' : repo.stargazers_count;
-        const age = Math.floor((Date.now() - new Date(repo.created_at)) / (1000*60*60*24*30));
-        document.getElementById('stats').innerHTML = `
-            <div class="stat"><span class="stat-value">${repo.name}</span><span class="stat-label">Project</span></div>
-            <div class="stat"><span class="stat-value">${stars}</span><span class="stat-label">Stars</span></div>
-            <div class="stat"><span class="stat-value">${repo.language || 'N/A'}</span><span class="stat-label">Language</span></div>
-            <div class="stat"><span class="stat-value">${age < 12 ? age+'mo' : Math.floor(age/12)+'y'}</span><span class="stat-label">Age</span></div>
-        `;
+    
+    // Install
+    if(has('install')){
+        s+=`## 📦 Installation\n\n\`\`\`bash\n`;
+        if(lang==='javascript'||lang==='typescript')s+=`npm install ${name}`;
+        else if(lang==='python')s+=`pip install ${name}`;
+        else if(lang==='go')s+=`go get github.com/${_o}/${name}`;
+        else if(lang==='rust')s+=`cargo add ${name}`;
+        else s+=`git clone https://github.com/${_o}/${name}.git`;
+        s+=`\n\`\`\`\n\n`;
     }
-
-    function opt(name) { return document.querySelector(`.option[data-opt="${name}"]`).classList.contains('active'); }
-
-    function render() {
-        const { name, description, language, license, topics, _owner } = repo;
-        const lic = license?.spdx_id || 'MIT';
-        const lang = (language || '').toLowerCase();
-        
-        let s = `# ${name}\n\n`;
-        
-        if (opt('badges')) {
-            s += `[![Stars](https://img.shields.io/github/stars/${_owner}/${name}?style=flat-square)](https://github.com/${_owner}/${name})\n`;
-            s += `[![License](https://img.shields.io/badge/license-${lic}-blue?style=flat-square)](LICENSE)\n`;
-            if (lang === 'javascript' || lang === 'typescript') s += `[![npm](https://img.shields.io/npm/v/${name}?style=flat-square)](https://npmjs.com/package/${name})\n`;
-            if (lang === 'python') s += `[![PyPI](https://img.shields.io/pypi/v/${name}?style=flat-square)](https://pypi.org/project/${name}/)\n`;
-            s += '\n';
+    
+    // Usage
+    if(has('usage')){
+        s+=`## 🚀 Quick Start\n\n\`\`\`${lang}\n`;
+        if(lang==='python')s+=`from ${name.replace(/-/g,'_')} import Client\n\nclient = Client()\nresult = client.run()\nprint(result)`;
+        else if(lang==='javascript'||lang==='typescript')s+=`import ${name.replace(/-/g,'')} from '${name}'\n\nconst result = ${name.replace(/-/g,'')}.run()\nconsole.log(result)`;
+        else if(lang==='go')s+=`import "${_o}/${name}"\n\nfunc main() {\n    ${name}.Run()\n}`;
+        else s+=`# Example usage\n${name} --help`;
+        s+=`\n\`\`\`\n\n`;
+    }
+    
+    // API (detailed only)
+    if(has('api')&&t==='detailed'){
+        s+=`## 📖 API Reference\n\n`;
+        s+=`| Method | Description |\n|--------|-------------|\n`;
+        s+=`| \`init()\` | Initialize the client |\n`;
+        s+=`| \`run()\` | Execute main function |\n`;
+        s+=`| \`close()\` | Clean up resources |\n\n`;
+    }
+    
+    // Contributing
+    if(has('contrib')){
+        if(t==='minimal'){
+            s+=`## 🤝 Contributing\n\nPRs welcome!\n\n`;
+        }else{
+            s+=`## 🤝 Contributing\n\n`;
+            s+=`Contributions are welcome! Please feel free to submit a Pull Request.\n\n`;
+            s+=`1. Fork the repository\n2. Create your branch (\`git checkout -b feature/amazing\`)\n3. Commit changes (\`git commit -m 'Add amazing feature'\`)\n4. Push (\`git push origin feature/amazing\`)\n5. Open a Pull Request\n\n`;
         }
-        
-        s += `${description || 'A great project.'}\n\n`;
-        
-        if (opt('demo')) s += `## 🎬 Demo\n\n![Demo](https://via.placeholder.com/800x400?text=Demo)\n\n`;
-        
-        if (opt('toc')) {
-            s += `## 📑 Contents\n\n- [Features](#-features)\n- [Install](#-install)\n- [Usage](#-usage)\n`;
-            if (opt('contrib')) s += `- [Contributing](#-contributing)\n`;
-            if (opt('license')) s += `- [License](#-license)\n`;
-            s += '\n';
-        }
-        
-        s += `## ✨ Features\n\n`;
-        if (topics && topics.length) {
-            topics.slice(0,5).forEach(t => s += `- ${t.replace(/-/g,' ')}\n`);
-        } else {
-            s += `- Fast and lightweight\n- Easy to use\n- Well documented\n`;
-        }
-        s += '\n';
-        
-        s += `## 📦 Install\n\n\`\`\`bash\n`;
-        if (lang === 'javascript' || lang === 'typescript') s += `npm install ${name}`;
-        else if (lang === 'python') s += `pip install ${name}`;
-        else if (lang === 'go') s += `go get github.com/${_owner}/${name}`;
-        else if (lang === 'rust') s += `cargo add ${name}`;
-        else s += `git clone https://github.com/${_owner}/${name}.git`;
-        s += `\n\`\`\`\n\n`;
-        
-        s += `## 🚀 Usage\n\n\`\`\`${lang || ''}\n// Quick example\nimport ${name.replace(/-/g,'_')} from '${name}'\n\`\`\`\n\n`;
-        
-        if (opt('contrib')) {
-            s += `## 🤝 Contributing\n\nPRs welcome! Fork → Branch → Commit → PR.\n\n`;
-        }
-        
-        if (opt('license')) {
-            s += `## 📜 License\n\n${lic}\n\n`;
-        }
-        
-        s += `---\n<p align="center">⭐ Star if you like it!</p>\n`;
-        
-        md = s;
-        document.getElementById('previewPane').innerHTML = marked.parse(s);
-        document.getElementById('codePane').textContent = s;
     }
+    
+    // License
+    if(has('license')){
+        s+=`## 📜 License\n\n${t==='minimal'?lic:`[${lic}](LICENSE)`}\n\n`;
+    }
+    
+    // Footer
+    s+=`---\n\n`;
+    if(t==='modern')s+=`<p align="center">Made with ❤️ · <a href="https://github.com/${_o}/${name}">⭐ Star if you like it!</a></p>\n`;
+    else s+=`⭐ Star if you find it useful!\n`;
+    
+    M=s;
+    $('preP').innerHTML=marked.parse(s);
+    $('outP').textContent=s;
+}
 
-    function showTab(t) {
-        document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-        document.querySelector(`.tab:${t==='preview'?'first':'last'}-child`).classList.add('active');
-        document.getElementById('previewPane').classList.toggle('hidden', t !== 'preview');
-        document.getElementById('codePane').classList.toggle('hidden', t === 'preview');
-    }
+function tab(t){
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelector(`.tab:${t==='pre'?'first':'last'}-child`).classList.add('on');
+    $('preP').classList.toggle('hid',t!=='pre');
+    $('outP').classList.toggle('hid',t==='pre');
+}
 
-    function copy() {
-        navigator.clipboard.writeText(md);
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    function download() {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(new Blob([md], {type:'text/markdown'}));
-        a.download = 'README.md';
-        a.click();
-    }
-
-    function reset() {
-        repo = null; md = '';
-        document.getElementById('url').value = '';
-        document.getElementById('result').classList.add('hidden');
-        window.scrollTo({top:0,behavior:'smooth'});
-    }
-    </script>
+function cp(){navigator.clipboard.writeText(M);$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2000)}
+function dl(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([M],{type:'text/markdown'}));a.download='README.md';a.click()}
+function rs(){R=null;M='';$('url').value='';$('res').classList.add('hid');window.scrollTo({top:0,behavior:'smooth'})}
+</script>
 </body>
 </html>
