@@ -308,3 +308,41 @@ footer a:hover {
         align-items: stretch;
     }
 }
+
+/* CTA Box */
+.cta-box {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.cta-box p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.cta-box .btn {
+    margin: 0.25rem;
+}
+
+.cta-box .btn-primary {
+    background: white;
+    color: #2563eb;
+}
+
+.cta-box .btn-primary:hover {
+    background: #f0f0f0;
+}
+
+.cta-box .btn-outline {
+    border-color: white;
+    color: white;
+}
+
+.cta-box .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+}
