@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub README Generator - Professional README Templates | Gingiris</title>
-    <meta name="description" content="Free GitHub README generator. Create professional README.md templates for open source projects, CLI tools, libraries, SaaS products. Includes badges, installation guides, and more.">
+    <title>GitHub README Generator - Optimize Your README | Gingiris</title>
+    <meta name="description" content="Free GitHub README generator. Paste your repo URL and get an optimized README.md instantly. Professional templates for open source projects, CLI tools, libraries.">
     <meta name="keywords" content="github readme template, readme generator, readme template, github readme, readme.md generator, open source readme, project documentation, markdown readme, github project template, readme best practices">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="GitHub README Generator - Free Professional Templates">
-    <meta property="og:description" content="Create stunning README.md files in seconds. Templates for open source, CLI tools, libraries, and more.">
+    <meta property="og:title" content="GitHub README Generator - One-Click README Optimization">
+    <meta property="og:description" content="Paste your GitHub repo URL and get an optimized README.md instantly.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gingiris.github.io/github-readme-generator/">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GitHub README Generator">
-    <meta name="twitter:description" content="Free tool for generating professional GitHub README files.">
+    <meta name="twitter:description" content="One-click README optimization for your GitHub repos.">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://gingiris.github.io/github-readme-generator/">
@@ -30,7 +30,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "GitHub README Generator",
-      "description": "Generate professional README.md templates for GitHub projects",
+      "description": "One-click README optimization for GitHub projects",
       "url": "https://gingiris.github.io/github-readme-generator/",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Web",
@@ -38,11 +38,6 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Gingiris",
-        "url": "https://github.com/Gingiris"
       }
     }
     </script>
@@ -51,117 +46,101 @@
     <div class="container">
         <header>
             <h1>📄 GitHub README Generator</h1>
-            <p class="subtitle">Create professional README.md files in seconds</p>
+            <p class="subtitle">Paste your repo URL → Get an optimized README instantly</p>
         </header>
 
         <main>
-            <!-- Step 1: Project Info -->
+            <!-- Step 1: Repo URL -->
             <section class="card" id="step1">
-                <h2>1. Project Information</h2>
-                <form id="projectForm">
-                    <div class="form-group">
-                        <label for="projectName">Project Name *</label>
-                        <input type="text" id="projectName" placeholder="e.g., awesome-project" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectDesc">Short Description *</label>
-                        <input type="text" id="projectDesc" placeholder="e.g., A blazing fast CLI tool for..." required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectType">Project Type</label>
-                        <select id="projectType">
-                            <option value="oss">🌟 Open Source Project</option>
-                            <option value="cli">⌨️ CLI Tool</option>
-                            <option value="library">📚 Library / Package</option>
-                            <option value="api">🔌 API / Service</option>
-                            <option value="app">📱 Application</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="language">Primary Language</label>
-                        <select id="language">
-                            <option value="javascript">JavaScript / TypeScript</option>
-                            <option value="python">Python</option>
-                            <option value="go">Go</option>
-                            <option value="rust">Rust</option>
-                            <option value="java">Java</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Step 2: Features -->
-            <section class="card" id="step2">
-                <h2>2. Key Features</h2>
-                <div class="form-group">
-                    <label>Add your main features (one per line)</label>
-                    <textarea id="features" rows="4" placeholder="⚡ Lightning fast performance
-🔒 Secure by default
-🎨 Beautiful UI
-📦 Easy installation"></textarea>
+                <h2>1. Enter Your GitHub Repo</h2>
+                <div class="input-group">
+                    <input type="text" id="repoUrl" placeholder="https://github.com/username/repo">
+                    <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeRepo()">
+                        <span class="btn-text">🔍 Analyze</span>
+                        <span class="btn-loading hidden">Analyzing...</span>
+                    </button>
+                </div>
+                <p class="hint">We'll fetch your repo info and generate an optimized README</p>
+                
+                <div class="token-section">
+                    <details>
+                        <summary>🔑 Add GitHub Token (optional, for private repos)</summary>
+                        <div class="form-group">
+                            <input type="password" id="githubToken" placeholder="ghp_xxxx...">
+                            <button class="btn btn-secondary btn-small" onclick="saveToken()">Save</button>
+                        </div>
+                    </details>
                 </div>
             </section>
 
-            <!-- Step 3: Installation -->
-            <section class="card" id="step3">
-                <h2>3. Installation</h2>
+            <!-- Repo Info (hidden initially) -->
+            <section class="card hidden" id="repoInfo">
+                <h2>📊 Repo Analysis</h2>
+                <div class="repo-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="repoName">-</span>
+                        <span class="stat-label">Project</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="repoStars">-</span>
+                        <span class="stat-label">Stars</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="repoLang">-</span>
+                        <span class="stat-label">Language</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="repoAge">-</span>
+                        <span class="stat-label">Age</span>
+                    </div>
+                </div>
+                <p class="repo-desc" id="repoDesc">-</p>
+            </section>
+
+            <!-- Step 2: Customize (hidden initially) -->
+            <section class="card hidden" id="step2">
+                <h2>2. Customize Your README</h2>
+                
+                <div class="form-group">
+                    <label for="features">Key Features (we'll auto-detect, but you can edit)</label>
+                    <textarea id="features" rows="4" placeholder="⚡ Feature 1
+🔒 Feature 2
+🎨 Feature 3"></textarea>
+                </div>
+                
                 <div class="form-group">
                     <label for="installCmd">Installation Command</label>
-                    <input type="text" id="installCmd" placeholder="e.g., npm install awesome-project">
+                    <input type="text" id="installCmd" placeholder="npm install your-package">
                 </div>
+                
                 <div class="form-group">
                     <label for="usageExample">Quick Usage Example</label>
-                    <textarea id="usageExample" rows="3" placeholder="import awesome from 'awesome-project'
+                    <textarea id="usageExample" rows="3" placeholder="import pkg from 'your-package'
 
-awesome.run()"></textarea>
+pkg.run()"></textarea>
                 </div>
-            </section>
 
-            <!-- Step 4: Optional Sections -->
-            <section class="card" id="step4">
-                <h2>4. Optional Sections</h2>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" id="includeBadges" checked> 🏷️ Badges (stars, license, npm)</label>
-                    <label><input type="checkbox" id="includeDemo" checked> 🎬 Demo / Screenshot section</label>
+                    <label><input type="checkbox" id="includeBadges" checked> 🏷️ Badges</label>
+                    <label><input type="checkbox" id="includeDemo" checked> 🎬 Demo Section</label>
                     <label><input type="checkbox" id="includeToc"> 📑 Table of Contents</label>
-                    <label><input type="checkbox" id="includeContributing" checked> 🤝 Contributing guide</label>
-                    <label><input type="checkbox" id="includeLicense" checked> 📜 License section</label>
+                    <label><input type="checkbox" id="includeContributing" checked> 🤝 Contributing</label>
+                    <label><input type="checkbox" id="includeLicense" checked> 📜 License</label>
                     <label><input type="checkbox" id="includeRoadmap"> 🗺️ Roadmap</label>
                 </div>
-                
-                <div class="form-group">
-                    <label for="githubUser">GitHub Username (for badges)</label>
-                    <input type="text" id="githubUser" placeholder="e.g., Gingiris">
-                </div>
-                
-                <div class="form-group">
-                    <label for="license">License</label>
-                    <select id="license">
-                        <option value="MIT">MIT</option>
-                        <option value="Apache-2.0">Apache 2.0</option>
-                        <option value="GPL-3.0">GPL 3.0</option>
-                        <option value="BSD-3-Clause">BSD 3-Clause</option>
-                        <option value="ISC">ISC</option>
-                    </select>
-                </div>
             </section>
 
-            <!-- Generate Button -->
-            <button class="btn btn-primary btn-large" id="generateBtn" onclick="generateReadme()">
-                <span class="btn-text">✨ Generate README</span>
-                <span class="btn-loading hidden">Generating...</span>
+            <!-- Generate Button (hidden initially) -->
+            <button class="btn btn-primary btn-large hidden" id="generateBtn" onclick="generateReadme()">
+                <span class="btn-text">✨ Generate Optimized README</span>
             </button>
 
             <!-- Results -->
             <section class="card hidden" id="results">
                 <div class="results-header">
-                    <h2>Your README.md</h2>
+                    <h2>Your Optimized README.md</h2>
                     <div class="btn-group">
-                        <button class="btn btn-secondary" onclick="copyReadme()">📋 Copy Markdown</button>
+                        <button class="btn btn-secondary" onclick="copyReadme()">📋 Copy</button>
                         <button class="btn btn-secondary" onclick="downloadReadme()">⬇️ Download</button>
                     </div>
                 </div>
@@ -185,7 +164,7 @@ awesome.run()"></textarea>
 
         <footer>
             <div class="cta-box">
-                <p>🚀 Want the complete playbook?</p>
+                <p>🚀 Want the complete open source marketing playbook?</p>
                 <a href="https://gingiris.gumroad.com/l/vhmkew" target="_blank" class="btn btn-primary">Get OSS Marketing Guide $</a>
                 <a href="https://github.com/Gingiris/gingiris-opensource" target="_blank" class="btn btn-outline">⭐ Star on GitHub</a>
             </div>
