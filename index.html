@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub README Generator - Pro README in 1 Click | Gingiris</title>
-    <meta name="description" content="Generate professional README like React, OpenAI SDK, shadcn/ui. Paste URL, get pro README instantly.">
-    <meta name="keywords" content="github readme template, readme generator, github readme, professional readme">
+    <title>GitHub README Generator - Pro README | Gingiris</title>
+    <meta name="description" content="Generate professional README like top open source projects. Detailed, production-ready templates.">
     <link rel="canonical" href="https://gingiris.github.io/github-readme-generator/">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
     <style>
         :root{--p:#2563eb;--bg:#f8fafc;--c:#fff;--t:#1e293b;--m:#64748b;--b:#e2e8f0;--ok:#22c55e}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
-        .w{max-width:860px;margin:0 auto;padding:2rem 1rem}
+        .w{max-width:900px;margin:0 auto;padding:2rem 1rem}
         header{text-align:center;margin-bottom:2rem}
-        h1{font-size:2rem;margin-bottom:.5rem}
-        .sub{color:var(--m)}
+        h1{font-size:2rem;margin-bottom:.5rem}.sub{color:var(--m)}
         .card{background:var(--c);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1)}
         .row{display:flex;gap:.5rem}
         .row input{flex:1;padding:1rem;border:2px solid var(--b);border-radius:8px;font-size:1rem}
@@ -27,36 +25,38 @@
         .ld{display:none}.btn.go .lb{display:none}.btn.go .ld{display:inline}
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0}
         .st{text-align:center;padding:.75rem;background:var(--bg);border-radius:8px}
-        .sv{font-size:1.25rem;font-weight:700;color:var(--p)}
-        .sl{font-size:.7rem;color:var(--m);text-transform:uppercase}
-        .opts{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
-        .opt{padding:.5rem 1rem;border:1px solid var(--b);border-radius:20px;cursor:pointer;font-size:.875rem;transition:.2s}
+        .sv{font-size:1.25rem;font-weight:700;color:var(--p)}.sl{font-size:.7rem;color:var(--m);text-transform:uppercase}
+        .opts{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+        .opt{padding:.4rem .8rem;border:1px solid var(--b);border-radius:16px;cursor:pointer;font-size:.8rem;transition:.2s}
         .opt:hover{border-color:var(--p)}.opt.on{background:var(--p);color:#fff;border-color:var(--p)}
-        .tpl{display:flex;gap:.5rem;margin:1rem 0}
-        .tpl .opt{flex:1;text-align:center;padding:.75rem}
+        .section{margin-bottom:1rem}
+        .section-title{font-weight:600;font-size:.9rem;margin-bottom:.5rem;color:var(--t)}
         .tabs{display:flex;gap:.5rem;margin-bottom:1rem}
         .tab{padding:.5rem 1rem;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;color:var(--m)}
         .tab.on{color:var(--p);border-bottom-color:var(--p)}
-        .out{background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;font-family:monospace;font-size:.875rem;max-height:500px;overflow:auto;white-space:pre-wrap}
-        .pre{background:var(--bg);padding:1rem;border-radius:8px;max-height:500px;overflow:auto}
-        .pre h1{font-size:1.5rem;margin-bottom:.5rem}.pre h2{font-size:1.25rem;margin:1rem 0 .5rem}
-        .pre ul{margin-left:1.5rem}.pre code{background:#e2e8f0;padding:.1rem .3rem;border-radius:3px;font-size:.9em}
+        .out{background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;font-family:monospace;font-size:.8rem;max-height:600px;overflow:auto;white-space:pre-wrap}
+        .pre{background:var(--bg);padding:1rem;border-radius:8px;max-height:600px;overflow:auto}
+        .pre h1{font-size:1.5rem;margin-bottom:.5rem}.pre h2{font-size:1.2rem;margin:1rem 0 .5rem}.pre h3{font-size:1rem;margin:.75rem 0 .4rem}
+        .pre p{margin-bottom:.75rem}.pre ul,.pre ol{margin-left:1.5rem;margin-bottom:.75rem}
+        .pre code{background:#e2e8f0;padding:.1rem .3rem;border-radius:3px;font-size:.85em}
         .pre pre{background:#1e293b;color:#e2e8f0;padding:.75rem;border-radius:6px;overflow-x:auto;margin:.5rem 0}
-        .pre pre code{background:none;padding:0}.pre img{max-width:100%}
+        .pre pre code{background:none;padding:0}.pre img{max-width:100%}.pre table{width:100%;border-collapse:collapse;margin:.75rem 0}
+        .pre th,.pre td{border:1px solid var(--b);padding:.5rem;text-align:left}.pre th{background:var(--bg)}
+        .pre blockquote{border-left:3px solid var(--p);padding-left:1rem;margin:.75rem 0;color:var(--m)}
         .acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
         .cta{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:1.5rem;border-radius:12px;text-align:center;margin:2rem 0}
         .cta p{margin-bottom:1rem;font-weight:500}.cta .btn{margin:.25rem}.cta .bp{background:#fff;color:#2563eb}.cta .bo{border-color:#fff;color:#fff}
         footer{text-align:center;color:var(--m);font-size:.875rem;margin-top:2rem}footer a{color:var(--p);text-decoration:none}
         .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:.75rem 1.5rem;border-radius:8px;font-weight:500;display:none}.toast.show{display:block}
         .hid{display:none!important}
-        @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.row{flex-direction:column}.tpl{flex-wrap:wrap}}
+        @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.row{flex-direction:column}}
     </style>
 </head>
 <body>
 <div class="w">
     <header>
         <h1>📄 README Generator</h1>
-        <p class="sub">Pro README like React, shadcn — one click</p>
+        <p class="sub">Production-ready README — like top open source projects</p>
     </header>
 
     <div class="card">
@@ -69,24 +69,33 @@
     <div class="card hid" id="res">
         <div class="stats" id="stats"></div>
         
-        <p style="font-weight:600;margin-bottom:.5rem">Template Style</p>
-        <div class="tpl" id="tpl">
-            <span class="opt on" data-t="modern">🚀 Modern</span>
-            <span class="opt" data-t="minimal">✨ Minimal</span>
-            <span class="opt" data-t="detailed">📚 Detailed</span>
+        <div class="section">
+            <div class="section-title">📐 Layout</div>
+            <div class="opts" id="layout">
+                <span class="opt on" data-l="centered">Centered (Modern)</span>
+                <span class="opt" data-l="left">Left-aligned (Classic)</span>
+            </div>
         </div>
         
-        <p style="font-weight:600;margin-bottom:.5rem">Include</p>
-        <div class="opts" id="opts">
-            <span class="opt on" data-o="logo">🖼️ Logo</span>
-            <span class="opt on" data-o="badges">🏷️ Badges</span>
-            <span class="opt on" data-o="demo">🎬 Demo</span>
-            <span class="opt on" data-o="features">✨ Features</span>
-            <span class="opt on" data-o="install">📦 Install</span>
-            <span class="opt on" data-o="usage">🚀 Usage</span>
-            <span class="opt" data-o="api">📖 API</span>
-            <span class="opt on" data-o="contrib">🤝 Contributing</span>
-            <span class="opt on" data-o="license">📜 License</span>
+        <div class="section">
+            <div class="section-title">📦 Sections</div>
+            <div class="opts" id="opts">
+                <span class="opt on" data-o="logo">Logo</span>
+                <span class="opt on" data-o="badges">Badges</span>
+                <span class="opt on" data-o="highlights">Highlights</span>
+                <span class="opt on" data-o="demo">Demo/Screenshot</span>
+                <span class="opt on" data-o="toc">Table of Contents</span>
+                <span class="opt on" data-o="features">Features</span>
+                <span class="opt on" data-o="install">Installation</span>
+                <span class="opt on" data-o="usage">Usage Examples</span>
+                <span class="opt on" data-o="docs">Documentation</span>
+                <span class="opt on" data-o="api">API Reference</span>
+                <span class="opt on" data-o="config">Configuration</span>
+                <span class="opt on" data-o="contrib">Contributing</span>
+                <span class="opt on" data-o="support">Support</span>
+                <span class="opt on" data-o="license">License</span>
+                <span class="opt on" data-o="footer">Footer</span>
+            </div>
         </div>
 
         <div class="tabs">
@@ -123,8 +132,8 @@ let R=null,M='';
 const $=id=>document.getElementById(id);
 
 $('url').addEventListener('keypress',e=>{if(e.key==='Enter')go()});
-document.querySelectorAll('.tpl .opt').forEach(o=>o.addEventListener('click',()=>{document.querySelectorAll('.tpl .opt').forEach(x=>x.classList.remove('on'));o.classList.add('on');if(R)render()}));
-document.querySelectorAll('.opts .opt').forEach(o=>o.addEventListener('click',()=>{o.classList.toggle('on');if(R)render()}));
+document.querySelectorAll('#layout .opt').forEach(o=>o.addEventListener('click',()=>{document.querySelectorAll('#layout .opt').forEach(x=>x.classList.remove('on'));o.classList.add('on');if(R)render()}));
+document.querySelectorAll('#opts .opt').forEach(o=>o.addEventListener('click',()=>{o.classList.toggle('on');if(R)render()}));
 
 async function go(){
     const url=$('url').value.trim();
@@ -158,124 +167,298 @@ function stats(){
         <div class="st"><span class="sv">${a<12?a+'mo':Math.floor(a/12)+'y'}</span><span class="sl">Age</span></div>`;
 }
 
-function has(o){return document.querySelector(`.opts .opt[data-o="${o}"]`).classList.contains('on')}
-function tpl(){return document.querySelector('.tpl .opt.on').dataset.t}
+function has(o){return document.querySelector(`#opts .opt[data-o="${o}"]`)?.classList.contains('on')}
+function layout(){return document.querySelector('#layout .opt.on')?.dataset.l||'centered'}
 
 function render(){
-    const{name,description,language,license,topics,_o}=R;
+    const{name,description,language,license,topics,_o,homepage}=R;
     const lic=license?.spdx_id||'MIT';
     const lang=(language||'').toLowerCase();
-    const t=tpl();
+    const centered=layout()==='centered';
+    const Name=name.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
     
     let s='';
     
-    // Logo + centered title (Modern style)
-    if(t==='modern'&&has('logo')){
-        s+=`<div align="center">\n`;
-        s+=`  <img src="https://via.placeholder.com/120?text=${name[0].toUpperCase()}" alt="Logo" width="120">\n`;
-        s+=`  <h1>${name}</h1>\n`;
+    // Header
+    if(centered){
+        s+=`<div align="center">\n\n`;
+        if(has('logo'))s+=`<img src="https://via.placeholder.com/150x150?text=${name[0].toUpperCase()}" alt="${name} logo" width="150" height="150">\n\n`;
+        s+=`# ${Name}\n\n`;
         if(has('badges')){
-            s+=`  <p>\n`;
-            s+=`    <a href="https://github.com/${_o}/${name}/stargazers"><img src="https://img.shields.io/github/stars/${_o}/${name}?style=flat-square" alt="Stars"></a>\n`;
-            s+=`    <a href="LICENSE"><img src="https://img.shields.io/badge/license-${lic}-blue?style=flat-square" alt="License"></a>\n`;
-            if(lang==='javascript'||lang==='typescript')s+=`    <a href="https://npmjs.com/package/${name}"><img src="https://img.shields.io/npm/v/${name}?style=flat-square" alt="npm"></a>\n`;
-            if(lang==='python')s+=`    <a href="https://pypi.org/project/${name}/"><img src="https://img.shields.io/pypi/v/${name}?style=flat-square" alt="PyPI"></a>\n`;
-            s+=`  </p>\n`;
+            s+=`[![GitHub Stars](https://img.shields.io/github/stars/${_o}/${name}?style=for-the-badge&logo=github)](https://github.com/${_o}/${name}/stargazers)\n`;
+            s+=`[![License](https://img.shields.io/badge/License-${lic}-blue?style=for-the-badge)](LICENSE)\n`;
+            if(lang==='javascript'||lang==='typescript')s+=`[![npm](https://img.shields.io/npm/v/${name}?style=for-the-badge&logo=npm)](https://npmjs.com/package/${name})\n`;
+            if(lang==='python')s+=`[![PyPI](https://img.shields.io/pypi/v/${name}?style=for-the-badge&logo=pypi)](https://pypi.org/project/${name}/)\n`;
+            s+=`[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)\n\n`;
         }
-        s+=`  <p>${description||'A great project.'}</p>\n`;
+        s+=`**${description||'A powerful tool to make your life easier.'}**\n\n`;
+        if(has('highlights')){
+            s+=`[Documentation](#-documentation) · [Examples](#-usage) · [Contributing](#-contributing)\n\n`;
+        }
         s+=`</div>\n\n`;
     }else{
-        // Minimal/Detailed: inline title + badges
-        s+=`# ${name}`;
-        if(has('badges')&&t==='minimal'){
-            s+=` [![Stars](https://img.shields.io/github/stars/${_o}/${name}?style=flat-square)](https://github.com/${_o}/${name})`;
+        s+=`# ${Name}\n\n`;
+        if(has('badges')){
+            s+=`[![Stars](https://img.shields.io/github/stars/${_o}/${name}?style=flat-square)](https://github.com/${_o}/${name}) `;
+            s+=`[![License](https://img.shields.io/badge/license-${lic}-blue?style=flat-square)](LICENSE) `;
+            if(lang==='javascript'||lang==='typescript')s+=`[![npm](https://img.shields.io/npm/v/${name}?style=flat-square)](https://npmjs.com/package/${name}) `;
+            if(lang==='python')s+=`[![PyPI](https://img.shields.io/pypi/v/${name}?style=flat-square)](https://pypi.org/project/${name}/) `;
+            s+=`\n\n`;
         }
-        s+=`\n\n`;
-        if(has('badges')&&t!=='minimal'){
-            s+=`[![Stars](https://img.shields.io/github/stars/${_o}/${name}?style=flat-square)](https://github.com/${_o}/${name}/stargazers) `;
-            s+=`[![License](https://img.shields.io/badge/license-${lic}-blue?style=flat-square)](LICENSE)\n\n`;
-        }
-        s+=`${description||'A great project.'}\n\n`;
+        s+=`${description||'A powerful tool to make your life easier.'}\n\n`;
     }
     
     // Demo
     if(has('demo')){
         s+=`## 🎬 Demo\n\n`;
-        s+=`![Demo](https://via.placeholder.com/800x400?text=${encodeURIComponent(name+' Demo')})\n\n`;
+        s+=`![${name} demo](https://via.placeholder.com/800x450?text=${encodeURIComponent(Name+' Demo')})\n\n`;
+        s+=`> Replace this placeholder with an actual screenshot or GIF of your project in action.\n\n`;
+    }
+    
+    // TOC
+    if(has('toc')){
+        s+=`## 📑 Table of Contents\n\n`;
+        if(has('features'))s+=`- [Features](#-features)\n`;
+        if(has('install'))s+=`- [Installation](#-installation)\n`;
+        if(has('usage'))s+=`- [Usage](#-usage)\n`;
+        if(has('docs'))s+=`- [Documentation](#-documentation)\n`;
+        if(has('api'))s+=`- [API Reference](#-api-reference)\n`;
+        if(has('config'))s+=`- [Configuration](#-configuration)\n`;
+        if(has('contrib'))s+=`- [Contributing](#-contributing)\n`;
+        if(has('support'))s+=`- [Support](#-support)\n`;
+        if(has('license'))s+=`- [License](#-license)\n`;
+        s+=`\n`;
     }
     
     // Features
     if(has('features')){
-        if(t==='detailed'){
-            s+=`## ✨ Features\n\n`;
-            const feats=topics&&topics.length?topics.slice(0,4):['Fast','Simple','Extensible','Well-documented'];
-            feats.forEach(f=>{
-                const title=f.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
-                s+=`* **${title}** — Description of this feature.\n`;
-            });
-            s+='\n';
-        }else{
-            s+=`## ✨ Features\n\n`;
-            const feats=topics&&topics.length?topics.slice(0,5):['Fast and lightweight','Easy to use','Well documented'];
-            feats.forEach(f=>s+=`- ${f.replace(/-/g,' ')}\n`);
-            s+='\n';
-        }
+        s+=`## ✨ Features\n\n`;
+        const featureList = generateFeatures(R);
+        featureList.forEach(f=>s+=`${f}\n`);
+        s+=`\n`;
     }
     
-    // Install
+    // Installation
     if(has('install')){
-        s+=`## 📦 Installation\n\n\`\`\`bash\n`;
-        if(lang==='javascript'||lang==='typescript')s+=`npm install ${name}`;
-        else if(lang==='python')s+=`pip install ${name}`;
-        else if(lang==='go')s+=`go get github.com/${_o}/${name}`;
-        else if(lang==='rust')s+=`cargo add ${name}`;
-        else s+=`git clone https://github.com/${_o}/${name}.git`;
-        s+=`\n\`\`\`\n\n`;
+        s+=`## 📦 Installation\n\n`;
+        s+=generateInstall(name, lang, _o);
+        s+=`\n`;
     }
     
     // Usage
     if(has('usage')){
-        s+=`## 🚀 Quick Start\n\n\`\`\`${lang}\n`;
-        if(lang==='python')s+=`from ${name.replace(/-/g,'_')} import Client\n\nclient = Client()\nresult = client.run()\nprint(result)`;
-        else if(lang==='javascript'||lang==='typescript')s+=`import ${name.replace(/-/g,'')} from '${name}'\n\nconst result = ${name.replace(/-/g,'')}.run()\nconsole.log(result)`;
-        else if(lang==='go')s+=`import "${_o}/${name}"\n\nfunc main() {\n    ${name}.Run()\n}`;
-        else s+=`# Example usage\n${name} --help`;
-        s+=`\n\`\`\`\n\n`;
+        s+=`## 🚀 Usage\n\n`;
+        s+=generateUsage(name, lang, _o);
+        s+=`\n`;
     }
     
-    // API (detailed only)
-    if(has('api')&&t==='detailed'){
+    // Documentation
+    if(has('docs')){
+        s+=`## 📚 Documentation\n\n`;
+        s+=`Full documentation is available at:\n\n`;
+        s+=`- **[Getting Started Guide](docs/getting-started.md)** - Quick introduction\n`;
+        s+=`- **[API Reference](docs/api.md)** - Detailed API documentation\n`;
+        s+=`- **[Examples](examples/)** - Code examples and use cases\n`;
+        s+=`- **[FAQ](docs/faq.md)** - Frequently asked questions\n\n`;
+        if(homepage)s+=`Visit [${homepage}](${homepage}) for more information.\n\n`;
+    }
+    
+    // API Reference
+    if(has('api')){
         s+=`## 📖 API Reference\n\n`;
-        s+=`| Method | Description |\n|--------|-------------|\n`;
-        s+=`| \`init()\` | Initialize the client |\n`;
-        s+=`| \`run()\` | Execute main function |\n`;
-        s+=`| \`close()\` | Clean up resources |\n\n`;
+        s+=generateAPI(name, lang);
+        s+=`\n`;
+    }
+    
+    // Configuration
+    if(has('config')){
+        s+=`## ⚙️ Configuration\n\n`;
+        s+=generateConfig(name, lang);
+        s+=`\n`;
     }
     
     // Contributing
     if(has('contrib')){
-        if(t==='minimal'){
-            s+=`## 🤝 Contributing\n\nPRs welcome!\n\n`;
-        }else{
-            s+=`## 🤝 Contributing\n\n`;
-            s+=`Contributions are welcome! Please feel free to submit a Pull Request.\n\n`;
-            s+=`1. Fork the repository\n2. Create your branch (\`git checkout -b feature/amazing\`)\n3. Commit changes (\`git commit -m 'Add amazing feature'\`)\n4. Push (\`git push origin feature/amazing\`)\n5. Open a Pull Request\n\n`;
-        }
+        s+=`## 🤝 Contributing\n\n`;
+        s+=`We love contributions! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting a Pull Request.\n\n`;
+        s+=`### Quick Start\n\n`;
+        s+=`\`\`\`bash\n# Fork and clone the repo\ngit clone https://github.com/YOUR_USERNAME/${name}.git\n\n# Install dependencies\n`;
+        if(lang==='javascript'||lang==='typescript')s+=`npm install\n`;
+        else if(lang==='python')s+=`pip install -e ".[dev]"\n`;
+        else s+=`make install\n`;
+        s+=`\n# Create a branch\ngit checkout -b feature/your-feature\n\n# Make your changes and submit a PR!\n\`\`\`\n\n`;
+        s+=`### Ways to Contribute\n\n`;
+        s+=`- 🐛 Report bugs and issues\n`;
+        s+=`- 💡 Propose new features\n`;
+        s+=`- 📖 Improve documentation\n`;
+        s+=`- 🔧 Submit pull requests\n\n`;
+    }
+    
+    // Support
+    if(has('support')){
+        s+=`## 💬 Support\n\n`;
+        s+=`- **GitHub Issues**: [Report a bug](https://github.com/${_o}/${name}/issues/new?template=bug_report.md)\n`;
+        s+=`- **Discussions**: [Ask questions](https://github.com/${_o}/${name}/discussions)\n`;
+        s+=`- **Twitter**: [@${_o}](https://twitter.com/${_o})\n\n`;
     }
     
     // License
     if(has('license')){
-        s+=`## 📜 License\n\n${t==='minimal'?lic:`[${lic}](LICENSE)`}\n\n`;
+        s+=`## 📜 License\n\n`;
+        s+=`This project is licensed under the [${lic} License](LICENSE).\n\n`;
+        s+=`\`\`\`\nCopyright (c) ${new Date().getFullYear()} ${_o}\n\`\`\`\n\n`;
     }
     
     // Footer
-    s+=`---\n\n`;
-    if(t==='modern')s+=`<p align="center">Made with ❤️ · <a href="https://github.com/${_o}/${name}">⭐ Star if you like it!</a></p>\n`;
-    else s+=`⭐ Star if you find it useful!\n`;
+    if(has('footer')){
+        s+=`---\n\n`;
+        if(centered){
+            s+=`<div align="center">\n\n`;
+            s+=`**[⬆ Back to Top](#${name.toLowerCase()})**\n\n`;
+            s+=`Made with ❤️ by [${_o}](https://github.com/${_o})\n\n`;
+            s+=`If you found this project helpful, please consider giving it a ⭐!\n\n`;
+            s+=`</div>\n`;
+        }else{
+            s+=`Made with ❤️ by [${_o}](https://github.com/${_o}) · [⭐ Star this repo](https://github.com/${_o}/${name})\n`;
+        }
+    }
     
     M=s;
     $('preP').innerHTML=marked.parse(s);
     $('outP').textContent=s;
+}
+
+function generateFeatures(repo){
+    const{topics,description,language}=repo;
+    const desc=(description||'').toLowerCase();
+    let features=[];
+    
+    // Smart feature detection
+    if(desc.includes('fast')||desc.includes('performance')||desc.includes('lightweight'))
+        features.push(`- **⚡ Lightning Fast** - Optimized for performance with minimal overhead`);
+    if(desc.includes('simple')||desc.includes('easy')||desc.includes('minimal'))
+        features.push(`- **🎯 Simple & Intuitive** - Easy to use with a clean, minimal API`);
+    if(desc.includes('type')||language==='TypeScript')
+        features.push(`- **📝 Type-Safe** - Full TypeScript support with comprehensive type definitions`);
+    if(desc.includes('secure')||desc.includes('security'))
+        features.push(`- **🔒 Secure by Default** - Built with security best practices in mind`);
+    if(desc.includes('extensible')||desc.includes('plugin'))
+        features.push(`- **🔌 Extensible** - Plugin architecture for easy customization`);
+    if(desc.includes('async')||desc.includes('concurrent'))
+        features.push(`- **⚡ Async Support** - Full async/await support for non-blocking operations`);
+    if(desc.includes('test')||desc.includes('coverage'))
+        features.push(`- **✅ Well Tested** - Comprehensive test suite with high coverage`);
+    if(desc.includes('document'))
+        features.push(`- **📚 Well Documented** - Extensive documentation with examples`);
+    
+    // Add from topics
+    if(topics&&topics.length){
+        topics.slice(0,3).forEach(t=>{
+            const title=t.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+            if(!features.some(f=>f.toLowerCase().includes(t)))
+                features.push(`- **${title}** - Built-in ${title.toLowerCase()} support`);
+        });
+    }
+    
+    // Ensure minimum features
+    if(features.length<4){
+        const defaults=[
+            `- **🚀 Easy Setup** - Get started in minutes with simple installation`,
+            `- **📦 Zero Dependencies** - Minimal footprint with no external dependencies`,
+            `- **🔄 Active Development** - Regular updates and improvements`,
+            `- **💪 Production Ready** - Battle-tested and ready for production use`
+        ];
+        defaults.forEach(d=>{if(features.length<6&&!features.includes(d))features.push(d)});
+    }
+    
+    return features.slice(0,6);
+}
+
+function generateInstall(name,lang,owner){
+    let s='';
+    
+    if(lang==='javascript'||lang==='typescript'){
+        s+=`### Using npm\n\n\`\`\`bash\nnpm install ${name}\n\`\`\`\n\n`;
+        s+=`### Using yarn\n\n\`\`\`bash\nyarn add ${name}\n\`\`\`\n\n`;
+        s+=`### Using pnpm\n\n\`\`\`bash\npnpm add ${name}\n\`\`\`\n`;
+    }else if(lang==='python'){
+        s+=`### Using pip\n\n\`\`\`bash\npip install ${name}\n\`\`\`\n\n`;
+        s+=`### Using Poetry\n\n\`\`\`bash\npoetry add ${name}\n\`\`\`\n\n`;
+        s+=`### From source\n\n\`\`\`bash\ngit clone https://github.com/${owner}/${name}.git\ncd ${name}\npip install -e .\n\`\`\`\n`;
+    }else if(lang==='go'){
+        s+=`\`\`\`bash\ngo get github.com/${owner}/${name}\n\`\`\`\n`;
+    }else if(lang==='rust'){
+        s+=`Add to your \`Cargo.toml\`:\n\n\`\`\`toml\n[dependencies]\n${name} = "0.1"\n\`\`\`\n\n`;
+        s+=`Or install via cargo:\n\n\`\`\`bash\ncargo add ${name}\n\`\`\`\n`;
+    }else{
+        s+=`\`\`\`bash\n# Clone the repository\ngit clone https://github.com/${owner}/${name}.git\ncd ${name}\n\n# Install dependencies\nmake install\n\`\`\`\n`;
+    }
+    return s;
+}
+
+function generateUsage(name,lang,owner){
+    let s='';
+    const varName=name.replace(/-/g,'_').replace(/[^a-z0-9_]/gi,'');
+    
+    s+=`### Basic Example\n\n`;
+    
+    if(lang==='javascript'||lang==='typescript'){
+        s+=`\`\`\`${lang==='typescript'?'typescript':'javascript'}\n`;
+        s+=`import { ${varName} } from '${name}';\n\n`;
+        s+=`// Initialize\nconst client = new ${varName}();\n\n`;
+        s+=`// Basic usage\nconst result = await client.run({\n  input: 'your-input',\n  options: { /* ... */ }\n});\n\nconsole.log(result);\n`;
+        s+=`\`\`\`\n\n`;
+    }else if(lang==='python'){
+        s+=`\`\`\`python\nfrom ${varName} import Client\n\n`;
+        s+=`# Initialize\nclient = Client()\n\n`;
+        s+=`# Basic usage\nresult = client.run(\n    input="your-input",\n    options={}\n)\n\nprint(result)\n`;
+        s+=`\`\`\`\n\n`;
+    }else if(lang==='go'){
+        s+=`\`\`\`go\npackage main\n\nimport (\n    "fmt"\n    "${owner}/${name}"\n)\n\nfunc main() {\n    client := ${varName}.New()\n    result, err := client.Run("your-input")\n    if err != nil {\n        panic(err)\n    }\n    fmt.Println(result)\n}\n\`\`\`\n\n`;
+    }else{
+        s+=`\`\`\`bash\n# Run the tool\n${name} --input your-input\n\n# With options\n${name} --input your-input --verbose\n\`\`\`\n\n`;
+    }
+    
+    s+=`### Advanced Example\n\n`;
+    s+=`For more examples, see the [examples](examples/) directory.\n`;
+    
+    return s;
+}
+
+function generateAPI(name,lang){
+    let s='';
+    const varName=name.replace(/-/g,'_').replace(/[^a-z0-9_]/gi,'');
+    
+    s+=`### Core Methods\n\n`;
+    s+=`| Method | Description |\n`;
+    s+=`|--------|-------------|\n`;
+    s+=`| \`new()\` / \`init()\` | Create a new instance |\n`;
+    s+=`| \`run(input, options)\` | Execute the main operation |\n`;
+    s+=`| \`configure(options)\` | Update configuration |\n`;
+    s+=`| \`close()\` / \`dispose()\` | Clean up resources |\n\n`;
+    
+    s+=`### Options\n\n`;
+    s+=`| Option | Type | Default | Description |\n`;
+    s+=`|--------|------|---------|-------------|\n`;
+    s+=`| \`timeout\` | \`number\` | \`30000\` | Request timeout in ms |\n`;
+    s+=`| \`retries\` | \`number\` | \`3\` | Number of retry attempts |\n`;
+    s+=`| \`verbose\` | \`boolean\` | \`false\` | Enable verbose logging |\n`;
+    
+    return s;
+}
+
+function generateConfig(name,lang){
+    let s='';
+    
+    s+=`${name} can be configured via:\n\n`;
+    s+=`### Environment Variables\n\n`;
+    s+=`\`\`\`bash\nexport ${name.toUpperCase().replace(/-/g,'_')}_API_KEY="your-api-key"\nexport ${name.toUpperCase().replace(/-/g,'_')}_DEBUG="true"\n\`\`\`\n\n`;
+    
+    s+=`### Configuration File\n\n`;
+    s+=`Create a \`${name}.config.json\` in your project root:\n\n`;
+    s+=`\`\`\`json\n{\n  "apiKey": "your-api-key",\n  "timeout": 30000,\n  "retries": 3,\n  "debug": false\n}\n\`\`\`\n`;
+    
+    return s;
 }
 
 function tab(t){
